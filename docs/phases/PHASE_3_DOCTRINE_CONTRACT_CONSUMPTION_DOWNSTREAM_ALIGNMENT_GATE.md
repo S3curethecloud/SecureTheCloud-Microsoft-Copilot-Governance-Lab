@@ -1,6 +1,6 @@
 # Phase 3 — Doctrine Contract Consumption / Downstream Alignment Gate
 
-**Status:** Implementation Complete / CI Verification Pending  
+**Status:** Evidence Recorded  
 **Date:** 2026-06-24
 
 ## Goal
@@ -49,8 +49,8 @@ Forbidden:
 - [x] Sample doctrine alignment summary committed
 - [x] Contract consumption guide created
 - [x] Contract alignment tests created
-- [ ] CI passed
-- [ ] Phase 3 evidence recorded
+- [x] CI passed
+- [x] Phase 3 evidence recorded
 
 ## Evidence artifacts
 
@@ -72,6 +72,13 @@ Forbidden:
 - `contracts/portfolio/authority_matrix.json`
 - `contracts/portfolio/composition_rules.json`
 - `contracts/portfolio/status_taxonomy.json`
+
+## Validation evidence
+
+- PR #3 `Phase 3 downstream contract alignment gate` merged into `main`.
+- Merge commit: `65f3565e6b2b54563dd5052a046d04dd2a075969`.
+- GitHub Actions workflow `copilot-governance-lab-ci` completed successfully.
+- GitHub Actions run `28083292133` concluded with `success`.
 
 ## Claims boundary
 
