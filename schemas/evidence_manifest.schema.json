@@ -1,0 +1,11 @@
+{
+  "title": "SecureTheCloud Copilot Governance Evidence Manifest",
+  "type": "object",
+  "required": ["artifact", "sha256", "synthetic_evidence", "claims_boundary"],
+  "properties": {
+    "artifact": {"type": "string", "minLength": 1},
+    "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "synthetic_evidence": {"type": "boolean"},
+    "claims_boundary": {"type": "string", "minLength": 1}
+  }
+}
