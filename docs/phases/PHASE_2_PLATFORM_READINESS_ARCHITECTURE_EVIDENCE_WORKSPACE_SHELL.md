@@ -1,6 +1,6 @@
 # Phase 2 — Platform Readiness Architecture / Evidence Workspace Shell
 
-**Status:** Implementation Complete / CI Verification Pending  
+**Status:** Evidence Recorded  
 **Date:** 2026-06-24
 
 ## Goal
@@ -45,8 +45,8 @@ Forbidden:
 - [x] Sample workspace index committed
 - [x] Sample evidence workspace snapshot committed
 - [x] Workspace tests created
-- [ ] CI passed
-- [ ] Phase 2 evidence recorded
+- [x] CI passed
+- [x] Phase 2 evidence recorded
 
 ## Evidence artifacts
 
@@ -57,6 +57,13 @@ Forbidden:
 - `evidence/sample_reports/workspace_index.json`
 - `evidence/sample_reports/evidence_workspace.md`
 - `tests/test_workspace.py`
+
+## Validation evidence
+
+- PR #2 `Phase 2 platform readiness evidence workspace shell` merged into `main`.
+- Merge commit: `d62f0f532caa9908304d22dd50597b87611038dd`.
+- GitHub Actions workflow `copilot-governance-lab-ci` completed successfully.
+- GitHub Actions run `28080575254` concluded with `success`.
 
 ## Claims boundary
 
