@@ -2,7 +2,7 @@
 
 **Project:** SecureTheCloud Microsoft Copilot Governance Lab  
 **Repository:** `S3curethecloud/SecureTheCloud-Microsoft-Copilot-Governance-Lab`  
-**Current Status:** Phase 1 / Evidence Recorded  
+**Current Status:** Phase 2 / Platform Readiness Architecture Implemented - CI Verification Pending  
 **Last Updated:** 2026-06-24
 
 ## Phase 0 — Repository Baseline
@@ -120,3 +120,59 @@
 ### Closure rule
 
 Phase 0 and Phase 1 are closed for simulation-first repository baseline and evidence-engine hardening only. No live Microsoft tenant integration, live evidence collection, production enforcement, authorization behavior, token issuance, runtime session creation, real customer data handling, SOC 2 certification claim, or production operating-effectiveness claim is authorized by this closure.
+
+## Phase 2 — Platform Readiness Architecture / Evidence Workspace Shell
+
+**Goal:** Introduce platform architecture structure and a static evidence workspace shell without prematurely claiming live production capability.
+
+### Checklist
+
+- [x] Phase 2 document created
+- [x] Platform readiness architecture document created
+- [x] Evidence workspace shell specification created
+- [x] Workspace generator module created
+- [x] CLI workspace output flag created
+- [x] Workspace index schema created
+- [x] Sample workspace index committed
+- [x] Sample evidence workspace snapshot committed
+- [x] Workspace tests created
+- [ ] CI passed
+- [ ] Phase 2 evidence recorded
+
+### Allowed scope
+
+- static platform-readiness architecture
+- static evidence workspace shell
+- generated synthetic workspace artifacts
+- workspace schema validation
+- deterministic tests
+- documentation
+
+### Forbidden scope
+
+- live Microsoft tenant integration
+- live Microsoft evidence collection
+- backend API exposure
+- authentication or authorization behavior
+- RBAC
+- token issuance
+- runtime sessions
+- database persistence
+- production enforcement
+- real customer data
+- SOC 2 certification claims
+- production operating-effectiveness claims
+
+### Evidence
+
+- Phase 2 document: `docs/phases/PHASE_2_PLATFORM_READINESS_ARCHITECTURE_EVIDENCE_WORKSPACE_SHELL.md`
+- Platform architecture: `docs/platform/PLATFORM_READINESS_ARCHITECTURE.md`
+- Workspace specification: `docs/platform/EVIDENCE_WORKSPACE_SHELL.md`
+- Workspace generator: `src/stc_copilot_lab/workspace.py`
+- Workspace schema: `schemas/workspace_index.schema.json`
+- Sample workspace outputs: `evidence/sample_reports/workspace_index.json`, `evidence/sample_reports/evidence_workspace.md`
+- Test coverage: `tests/test_workspace.py`
+
+### Closure rule
+
+Phase 2 remains CI verification pending until GitHub Actions confirms the workspace shell changes pass. Phase 2 does not authorize a production platform or live Microsoft evidence collection.
