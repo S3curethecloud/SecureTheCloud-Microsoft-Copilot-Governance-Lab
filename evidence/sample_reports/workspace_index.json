@@ -1,0 +1,43 @@
+{
+  "adoption_status": "not_ready",
+  "artifacts": [
+    {"kind": "control_results", "path": "control_results.json", "synthetic": true},
+    {"kind": "manifest", "path": "evidence_manifest.json", "synthetic": true},
+    {"kind": "summary", "path": "secure_adoption_summary.md", "synthetic": true},
+    {"kind": "workspace_snapshot", "path": "evidence_workspace.md", "synthetic": true},
+    {"kind": "workspace_index", "path": "workspace_index.json", "synthetic": true}
+  ],
+  "authority": "no_runtime_authority",
+  "claims_boundary": "Static simulation workspace only; no live Microsoft tenant connection, no backend, no authorization behavior, no runtime sessions, no production enforcement, and no SOC 2 certification claim.",
+  "control_groups": {
+    "adopt": {"controls": ["COPILOT-ADOPT-001"], "failed": 1, "total": 1},
+    "audit": {"controls": ["COPILOT-AUDIT-001"], "failed": 0, "total": 1},
+    "ca": {"controls": ["COPILOT-CA-001", "COPILOT-CA-002"], "failed": 1, "total": 2},
+    "conn": {"controls": ["COPILOT-CONN-001"], "failed": 1, "total": 1},
+    "dlp": {"controls": ["COPILOT-DLP-001", "COPILOT-DLP-002", "COPILOT-DLP-003"], "failed": 1, "total": 3},
+    "id": {"controls": ["COPILOT-ID-001", "COPILOT-ID-002"], "failed": 1, "total": 2},
+    "prompt": {"controls": ["COPILOT-PROMPT-001"], "failed": 0, "total": 1},
+    "purview": {"controls": ["COPILOT-PURVIEW-001"], "failed": 0, "total": 1},
+    "risk": {"controls": ["COPILOT-RISK-001"], "failed": 0, "total": 1},
+    "sp": {"controls": ["COPILOT-SP-001"], "failed": 1, "total": 1}
+  },
+  "navigation": [
+    {"artifact": "evidence_workspace.md#overview", "id": "overview", "title": "Overview"},
+    {"artifact": "evidence_workspace.md#control-explorer", "id": "controls", "title": "Control Explorer"},
+    {"artifact": "evidence_workspace.md#failed-findings", "id": "findings", "title": "Failed Findings"},
+    {"artifact": "evidence_workspace.md#evidence-artifacts", "id": "artifacts", "title": "Evidence Artifacts"},
+    {"artifact": "evidence_workspace.md#claims-boundary", "id": "boundaries", "title": "Claims Boundary"}
+  ],
+  "platform_posture": "enterprise_ready_architecture_foundation",
+  "priority_findings": [
+    {"control_id": "COPILOT-DLP-003", "recommendation": "Add a DLP rule excluding Highly Confidential or equivalent labels from Copilot processing.", "severity": "critical", "title": "Labeled sensitive content is excluded from processing"},
+    {"control_id": "COPILOT-SP-001", "recommendation": "Remove broad sharing from sensitive files or record risk acceptance before adoption.", "severity": "critical", "title": "Sensitive SharePoint and OneDrive content is not broadly shared"},
+    {"control_id": "COPILOT-ADOPT-001", "recommendation": "Resolve failed controls or record owner-approved risk acceptance before rollout.", "severity": "critical", "title": "Secure adoption decision"}
+  ],
+  "summary_counts": {
+    "by_severity": {"critical": 5, "high": 9, "info": 0, "low": 0, "medium": 0},
+    "by_status": {"fail": 6, "pass": 8, "warn": 0}
+  },
+  "workspace": "SecureTheCloud Copilot Governance Evidence Workspace",
+  "workspace_mode": "static_simulation_shell"
+}
