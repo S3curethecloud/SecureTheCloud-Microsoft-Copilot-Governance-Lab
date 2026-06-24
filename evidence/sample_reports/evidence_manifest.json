@@ -1,0 +1,6 @@
+{
+  "artifact": "control_results.json",
+  "claims_boundary": "Readiness evidence only; no live enforcement or SOC 2 certification claim.",
+  "sha256": "78a2a52ca8360226e26137e0b135817690a77a9db191f576889058b5a21914e3",
+  "synthetic_evidence": true
+}
