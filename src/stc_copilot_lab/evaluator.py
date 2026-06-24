@@ -8,6 +8,9 @@ from dataclasses import dataclass, asdict
 from pathlib import Path
 from typing import Any
 
+from .normalization import normalize_severity, normalize_status
+from .schema_validation import validate_control_results, validate_evidence_manifest, validate_lab_state
+
 
 CRITICAL = "critical"
 HIGH = "high"
@@ -24,6 +27,10 @@ class ControlResult:
     status: str
     evidence: dict[str, Any]
     recommendation: str
+
+    def __post_init__(self) -> None:
+        object.__setattr__(self, "severity", normalize_severity(self.severity))
+        object.__setattr__(self, "status", normalize_status(self.status))
 
 
 def _contains_policy(policies: list[dict[str, Any]], *, action: str, target_group: str | None = None) -> bool:
@@ -49,8 +56,19 @@ def _result(control_id: str, title: str, severity: str, ok: bool, evidence: dict
     )
 
 
+def _summary_counts(control_results: list[dict[str, Any]]) -> dict[str, dict[str, int]]:
+    by_status: dict[str, int] = {PASS: 0, FAIL: 0, WARN: 0}
+    by_severity: dict[str, int] = {CRITICAL: 0, HIGH: 0, "medium": 0, "low": 0, "info": 0}
+    for result in control_results:
+        by_status[result["status"]] = by_status.get(result["status"], 0) + 1
+        by_severity[result["severity"]] = by_severity.get(result["severity"], 0) + 1
+    return {"by_status": by_status, "by_severity": by_severity}
+
+
 def evaluate_lab_state(state: dict[str, Any]) -> dict[str, Any]:
     """Evaluate a synthetic lab state and return control results plus adoption status."""
+
+    validate_lab_state(state)
 
     intake = state.get("risk_intake", {})
     users = state.get("users", [])
@@ -219,24 +237,30 @@ def evaluate_lab_state(state: dict[str, Any]) -> dict[str, Any]:
     ))
 
     control_results = [asdict(r) for r in results]
+    validate_control_results(control_results)
     manifest_source = json.dumps(control_results, sort_keys=True).encode("utf-8")
     manifest_hash = hashlib.sha256(manifest_source).hexdigest()
+    evidence_manifest = {
+        "artifact": "control_results.json",
+        "sha256": manifest_hash,
+        "synthetic_evidence": True,
+        "claims_boundary": "Readiness evidence only; no live enforcement or SOC 2 certification claim.",
+    }
+    validate_evidence_manifest(evidence_manifest)
 
     return {
         "lab": "SecureTheCloud Microsoft Copilot Governance Lab",
         "mode": "simulation",
         "authority": "no_runtime_authority",
         "adoption_status": adoption_status,
+        "summary_counts": _summary_counts(control_results),
         "control_results": control_results,
-        "evidence_manifest": {
-            "artifact": "control_results.json",
-            "sha256": manifest_hash,
-            "synthetic_evidence": True,
-            "claims_boundary": "Readiness evidence only; no live enforcement or SOC 2 certification claim.",
-        },
+        "evidence_manifest": evidence_manifest,
     }
 
 
 def load_state(fixtures_dir: str | Path) -> dict[str, Any]:
     path = Path(fixtures_dir) / "lab_state.json"
-    return json.loads(path.read_text(encoding="utf-8"))
+    state = json.loads(path.read_text(encoding="utf-8"))
+    validate_lab_state(state)
+    return state
