@@ -18,11 +18,23 @@ def _write_summary(result: dict, out_dir: Path) -> None:
         f"Authority: {result['authority']}",
         f"Adoption status: `{result['adoption_status']}`",
         "",
+        "## Summary counts",
+        "",
+        "| Dimension | Value | Count |",
+        "|---|---|---:|",
+    ]
+    for status, count in result["summary_counts"]["by_status"].items():
+        lines.append(f"| status | {status} | {count} |")
+    for severity, count in result["summary_counts"]["by_severity"].items():
+        lines.append(f"| severity | {severity} | {count} |")
+
+    lines.extend([
+        "",
         "## Control results",
         "",
         "| Control ID | Severity | Status | Title |",
         "|---|---|---|---|",
-    ]
+    ])
     for control in result["control_results"]:
         lines.append(
             f"| {control['control_id']} | {control['severity']} | {control['status']} | {control['title']} |"
