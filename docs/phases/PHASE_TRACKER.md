@@ -2,7 +2,7 @@
 
 **Project:** SecureTheCloud Microsoft Copilot Governance Lab  
 **Repository:** `S3curethecloud/SecureTheCloud-Microsoft-Copilot-Governance-Lab`  
-**Current Status:** Phase 2 / Evidence Recorded  
+**Current Status:** Phase 3 / Doctrine Contract Consumption Implemented - CI Verification Pending  
 **Last Updated:** 2026-06-24
 
 ## Phase 0 — Repository Baseline
@@ -27,28 +27,6 @@
 - [x] CI workflow created
 - [x] CI passed
 - [x] Phase 0 evidence recorded
-
-### Allowed scope
-
-- synthetic fixtures
-- local evaluation
-- read-only risk scoring
-- synthetic evidence packaging
-- documentation
-- CI tests
-
-### Forbidden scope
-
-- live Microsoft tenant mutation
-- live backend exposure
-- production enforcement
-- token issuance
-- authorization grants
-- runtime sessions
-- real customer data
-- provider mutation
-- Kubernetes mutation
-- SOC 2 certification claims
 
 ### Evidence
 
@@ -82,27 +60,6 @@
 - [x] Local validation evidence recorded
 - [x] CI passed
 - [x] Phase 1 evidence recorded
-
-### Allowed scope
-
-- schemas
-- static source references
-- synthetic evidence package outputs
-- local validation
-- deterministic tests
-- documentation
-
-### Forbidden scope
-
-- live Microsoft tenant mutation
-- live Microsoft evidence collection
-- production enforcement
-- authorization grants
-- token issuance
-- runtime sessions
-- real customer data
-- SOC 2 certification claims
-- production operating-effectiveness claims
 
 ### Evidence
 
@@ -139,30 +96,6 @@ Phase 0 and Phase 1 are closed for simulation-first repository baseline and evid
 - [x] CI passed
 - [x] Phase 2 evidence recorded
 
-### Allowed scope
-
-- static platform-readiness architecture
-- static evidence workspace shell
-- generated synthetic workspace artifacts
-- workspace schema validation
-- deterministic tests
-- documentation
-
-### Forbidden scope
-
-- live Microsoft tenant integration
-- live Microsoft evidence collection
-- backend API exposure
-- authentication or authorization behavior
-- RBAC
-- token issuance
-- runtime sessions
-- database persistence
-- production enforcement
-- real customer data
-- SOC 2 certification claims
-- production operating-effectiveness claims
-
 ### Evidence
 
 - Phase 2 document: `docs/phases/PHASE_2_PLATFORM_READINESS_ARCHITECTURE_EVIDENCE_WORKSPACE_SHELL.md`
@@ -178,3 +111,63 @@ Phase 0 and Phase 1 are closed for simulation-first repository baseline and evid
 ### Closure rule
 
 Phase 2 is closed for platform-readiness architecture and static evidence workspace shell only. Phase 2 does not authorize a production platform, live Microsoft evidence collection, backend API exposure, authentication or authorization behavior, RBAC, token issuance, runtime sessions, database persistence, production enforcement, real customer data handling, SOC 2 certification claims, or production operating-effectiveness claims.
+
+## Phase 3 — Doctrine Contract Consumption / Downstream Alignment Gate
+
+**Goal:** Consume canonical machine-readable contracts as downstream references and prove the lab preserves the authority chain.
+
+### Checklist
+
+- [x] Phase 3 document created
+- [x] Contract consumption manifest created
+- [x] Doctrine alignment report schema created
+- [x] Downstream alignment generator created
+- [x] CLI doctrine alignment output flag created
+- [x] Sample doctrine alignment report committed
+- [x] Sample doctrine alignment summary committed
+- [x] Contract consumption guide created
+- [x] Contract alignment tests created
+- [ ] CI passed
+- [ ] Phase 3 evidence recorded
+
+### Allowed scope
+
+- downstream contract path references
+- local alignment report generation
+- local schema validation
+- deterministic tests
+- documentation
+
+### Forbidden scope
+
+- canonical doctrine ownership
+- local substitute doctrine
+- invented suite membership
+- invented module authority
+- invented status taxonomy values
+- customer-offerable suite claim
+- live Microsoft tenant integration
+- live evidence collection
+- backend API exposure
+- authentication or authorization behavior
+- RBAC
+- token issuance
+- runtime sessions
+- database persistence
+- production enforcement
+- SOC 2 certification claims
+- production operating-effectiveness claims
+
+### Evidence
+
+- Phase 3 document: `docs/phases/PHASE_3_DOCTRINE_CONTRACT_CONSUMPTION_DOWNSTREAM_ALIGNMENT_GATE.md`
+- Contract consumption guide: `docs/doctrine/CONTRACT_CONSUMPTION.md`
+- Contract consumption manifest: `data/doctrine/contract_consumption_manifest.json`
+- Alignment report schema: `schemas/doctrine_alignment.schema.json`
+- Alignment generator: `src/stc_copilot_lab/doctrine_alignment.py`
+- Sample alignment outputs: `evidence/sample_reports/doctrine_alignment_report.json`, `evidence/sample_reports/doctrine_alignment_summary.md`
+- Test coverage: `tests/test_doctrine_alignment.py`
+
+### Closure rule
+
+Phase 3 remains CI verification pending until GitHub Actions confirms downstream contract alignment checks pass. Phase 3 does not authorize canonical doctrine ownership, suite membership, runtime authority, production enforcement, SOC 2 certification claims, or production operating-effectiveness claims.
