@@ -1,0 +1,116 @@
+{
+  "alignment_report": "SecureTheCloud Copilot Governance Lab Doctrine Alignment",
+  "authority_status": "no_runtime_authority",
+  "canonical_repository": "S3curethecloud/securethecloud-doctrine-control-plane",
+  "checks": [
+    {
+      "check_id": "DOCTRINE-CONSUME-001",
+      "evidence": {
+        "contract_paths": [
+          "contracts/portfolio/suite_catalog.json",
+          "contracts/portfolio/module_registry.json",
+          "contracts/portfolio/authority_matrix.json",
+          "contracts/portfolio/composition_rules.json",
+          "contracts/portfolio/status_taxonomy.json"
+        ]
+      },
+      "status": "pass",
+      "title": "Canonical contract paths are referenced"
+    },
+    {
+      "check_id": "DOCTRINE-CONSUME-002",
+      "evidence": {
+        "human_authority_sources": [
+          "doctrine.lock.md",
+          "AGENTS.md",
+          "docs/portfolio/AGENT_CONSUMPTION_GUIDE.md",
+          "docs/portfolio/SUITE_CATALOG.md",
+          "docs/portfolio/MODULE_AUTHORITY_MATRIX.md",
+          "docs/portfolio/STATUS_TAXONOMY.md",
+          "docs/portfolio/COMPOSITION_LAYER_DOCTRINE.md",
+          "docs/portfolio/SENTINEL_CONTROL_POINT_RULE.md",
+          "docs/portfolio/PRODUCT_PACKAGING_BOUNDARIES.md"
+        ]
+      },
+      "status": "pass",
+      "title": "Human-readable doctrine authority is preserved"
+    },
+    {
+      "check_id": "DOCTRINE-AUTH-001",
+      "evidence": {
+        "manifest_authority": "no_runtime_authority",
+        "result_authority": "no_runtime_authority"
+      },
+      "status": "pass",
+      "title": "Downstream lab has no runtime authority"
+    },
+    {
+      "check_id": "DOCTRINE-AUTH-002",
+      "evidence": {
+        "customer_offerable_claimed": false,
+        "module_registration_status": "unregistered_candidate",
+        "suite_membership_claimed": false
+      },
+      "status": "pass",
+      "title": "No local suite membership or customer-offerable claim is made"
+    },
+    {
+      "check_id": "DOCTRINE-SUITE-001",
+      "evidence": {
+        "expected_customer_offerable_suites": [
+          "agent_blackbox",
+          "compliance_evidence",
+          "risk_intelligence",
+          "runtime_assurance"
+        ]
+      },
+      "status": "pass",
+      "title": "Customer-offerable suite IDs are recognized but not locally invented"
+    },
+    {
+      "check_id": "DOCTRINE-COMPOSE-001",
+      "evidence": {
+        "composition_creates_authority": false,
+        "evidence_creates_enforcement": false,
+        "sentinel_bypass_allowed": false
+      },
+      "status": "pass",
+      "title": "Composition and evidence do not create authority"
+    },
+    {
+      "check_id": "DOCTRINE-FORBID-001",
+      "evidence": {
+        "forbidden_downstream_actions": [
+          "bypass_sentinel",
+          "claim_soc2_certification_from_alignment_docs",
+          "create_local_substitute_doctrine",
+          "create_runtime_sessions",
+          "enforce_runtime_allow_deny_decisions",
+          "expose_live_backend_apis",
+          "grant_authorization",
+          "invent_module_authority",
+          "invent_status_taxonomy_values",
+          "invent_suite_membership",
+          "issue_tokens",
+          "perform_kubernetes_mutation",
+          "perform_production_traffic_cutover",
+          "perform_provider_mutation"
+        ]
+      },
+      "status": "pass",
+      "title": "Universal forbidden runtime actions remain blocked locally"
+    }
+  ],
+  "claims_boundary": "Downstream contract consumption only; canonical doctrine remains owned by the doctrine control plane. This lab has no runtime authority and does not claim suite membership, production enforcement, SOC 2 certification, or production operating effectiveness.",
+  "consumption_mode": "downstream_reference_only",
+  "contract_paths": [
+    "contracts/portfolio/suite_catalog.json",
+    "contracts/portfolio/module_registry.json",
+    "contracts/portfolio/authority_matrix.json",
+    "contracts/portfolio/composition_rules.json",
+    "contracts/portfolio/status_taxonomy.json"
+  ],
+  "module_registration_status": "unregistered_candidate",
+  "runtime_authority_claimed": false,
+  "suite_membership_claimed": false
+}

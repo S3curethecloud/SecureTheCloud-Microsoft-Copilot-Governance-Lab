@@ -1,0 +1,64 @@
+{
+  "manifest_name": "copilot_governance_lab_doctrine_contract_consumption",
+  "manifest_version": "0.1.0",
+  "canonical_repository": "S3curethecloud/securethecloud-doctrine-control-plane",
+  "canonical_doctrine_lock": "doctrine.lock.md",
+  "human_authority_sources": [
+    "doctrine.lock.md",
+    "AGENTS.md",
+    "docs/portfolio/AGENT_CONSUMPTION_GUIDE.md",
+    "docs/portfolio/SUITE_CATALOG.md",
+    "docs/portfolio/MODULE_AUTHORITY_MATRIX.md",
+    "docs/portfolio/STATUS_TAXONOMY.md",
+    "docs/portfolio/COMPOSITION_LAYER_DOCTRINE.md",
+    "docs/portfolio/SENTINEL_CONTROL_POINT_RULE.md",
+    "docs/portfolio/PRODUCT_PACKAGING_BOUNDARIES.md"
+  ],
+  "active_machine_readable_contracts": [
+    "contracts/portfolio/suite_catalog.json",
+    "contracts/portfolio/module_registry.json",
+    "contracts/portfolio/authority_matrix.json",
+    "contracts/portfolio/composition_rules.json",
+    "contracts/portfolio/status_taxonomy.json"
+  ],
+  "consumption_mode": "downstream_reference_only",
+  "local_substitute_doctrine_allowed": false,
+  "module_registration_status": "unregistered_candidate",
+  "authority_status": "no_runtime_authority",
+  "suite_membership_claimed": false,
+  "customer_offerable_claimed": false,
+  "runtime_authority_claimed": false,
+  "sentinel_bypass_allowed": false,
+  "composition_creates_authority": false,
+  "evidence_creates_enforcement": false,
+  "allowed_downstream_actions": [
+    "reference_canonical_contract_paths",
+    "validate_no_runtime_authority",
+    "validate_no_forbidden_action_claims",
+    "render_contract_alignment_report",
+    "render_customer_safe_boundary_summary"
+  ],
+  "forbidden_downstream_actions": [
+    "create_local_substitute_doctrine",
+    "invent_suite_membership",
+    "invent_module_authority",
+    "invent_status_taxonomy_values",
+    "issue_tokens",
+    "grant_authorization",
+    "create_runtime_sessions",
+    "expose_live_backend_apis",
+    "perform_provider_mutation",
+    "perform_kubernetes_mutation",
+    "perform_production_traffic_cutover",
+    "enforce_runtime_allow_deny_decisions",
+    "bypass_sentinel",
+    "claim_soc2_certification_from_alignment_docs"
+  ],
+  "expected_customer_offerable_suites": [
+    "agent_blackbox",
+    "compliance_evidence",
+    "runtime_assurance",
+    "risk_intelligence"
+  ],
+  "claims_boundary": "Downstream contract consumption only; canonical doctrine remains owned by the doctrine control plane. This lab has no runtime authority and does not claim suite membership, production enforcement, SOC 2 certification, or production operating effectiveness."
+}

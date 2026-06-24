@@ -19,4 +19,4 @@ jobs:
       - name: Test
         run: pytest
       - name: Generate synthetic evidence
-        run: python -m stc_copilot_lab.cli evaluate --fixtures data/fixtures --out evidence/generated
+        run: python -m stc_copilot_lab.cli evaluate --fixtures data/fixtures --out evidence/generated --workspace --doctrine-alignment
