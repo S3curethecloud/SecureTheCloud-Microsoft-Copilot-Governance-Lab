@@ -1,0 +1,202 @@
+[
+  {
+    "control_id": "COPILOT-RISK-001",
+    "evidence": {
+      "present_fields": [
+        "approval_state",
+        "business_unit",
+        "data_classes",
+        "pilot_group",
+        "request_id",
+        "risk_owner",
+        "use_case"
+      ],
+      "required_fields": [
+        "business_unit",
+        "use_case",
+        "data_classes",
+        "risk_owner",
+        "approval_state",
+        "pilot_group"
+      ]
+    },
+    "recommendation": "No remediation required for the current fixture set.",
+    "severity": "high",
+    "status": "pass",
+    "title": "Risk intake completeness"
+  },
+  {
+    "control_id": "COPILOT-ID-001",
+    "evidence": {
+      "pilot_group": "M365-Copilot-Pilot",
+      "pilot_user_count": 3
+    },
+    "recommendation": "No remediation required for the current fixture set.",
+    "severity": "high",
+    "status": "pass",
+    "title": "Copilot pilot access is group scoped"
+  },
+  {
+    "control_id": "COPILOT-ID-002",
+    "evidence": {
+      "unauthorized_guest_users": [
+        "guest-001"
+      ]
+    },
+    "recommendation": "Remove guest users from the pilot or record an explicit approved exception.",
+    "severity": "high",
+    "status": "fail",
+    "title": "Guest access reviewed before pilot inclusion"
+  },
+  {
+    "control_id": "COPILOT-CA-001",
+    "evidence": {
+      "pilot_group": "M365-Copilot-Pilot"
+    },
+    "recommendation": "No remediation required for the current fixture set.",
+    "severity": "critical",
+    "status": "pass",
+    "title": "MFA applies to Copilot pilot group"
+  },
+  {
+    "control_id": "COPILOT-CA-002",
+    "evidence": {
+      "pilot_group": "M365-Copilot-Pilot"
+    },
+    "recommendation": "Create or enable a Conditional Access policy requiring compliant devices for Copilot pilot users.",
+    "severity": "high",
+    "status": "fail",
+    "title": "Compliant device applies to Copilot pilot group"
+  },
+  {
+    "control_id": "COPILOT-PURVIEW-001",
+    "evidence": {
+      "labels": [
+        "confidential",
+        "highly confidential",
+        "public"
+      ]
+    },
+    "recommendation": "No remediation required for the current fixture set.",
+    "severity": "high",
+    "status": "pass",
+    "title": "Required Purview sensitivity labels exist"
+  },
+  {
+    "control_id": "COPILOT-DLP-001",
+    "evidence": {
+      "configured_actions": [
+        "restrict_sensitive_prompt_processing",
+        "restrict_sensitive_prompt_web_grounding"
+      ]
+    },
+    "recommendation": "No remediation required for the current fixture set.",
+    "severity": "critical",
+    "status": "pass",
+    "title": "Sensitive prompt content is restricted"
+  },
+  {
+    "control_id": "COPILOT-DLP-002",
+    "evidence": {
+      "configured_actions": [
+        "restrict_sensitive_prompt_processing",
+        "restrict_sensitive_prompt_web_grounding"
+      ]
+    },
+    "recommendation": "No remediation required for the current fixture set.",
+    "severity": "high",
+    "status": "pass",
+    "title": "Sensitive prompt web grounding is restricted"
+  },
+  {
+    "control_id": "COPILOT-DLP-003",
+    "evidence": {
+      "configured_actions": [
+        "restrict_sensitive_prompt_processing",
+        "restrict_sensitive_prompt_web_grounding"
+      ]
+    },
+    "recommendation": "Add a DLP rule excluding Highly Confidential or equivalent labels from Copilot processing.",
+    "severity": "critical",
+    "status": "fail",
+    "title": "Labeled sensitive content is excluded from processing"
+  },
+  {
+    "control_id": "COPILOT-SP-001",
+    "evidence": {
+      "risky_files": [
+        {
+          "id": "file-002",
+          "sharing": [
+            "organization"
+          ]
+        }
+      ]
+    },
+    "recommendation": "Remove broad sharing from sensitive files or record risk acceptance before adoption.",
+    "severity": "critical",
+    "status": "fail",
+    "title": "Sensitive SharePoint and OneDrive content is not broadly shared"
+  },
+  {
+    "control_id": "COPILOT-PROMPT-001",
+    "evidence": {
+      "incomplete_scenarios": [],
+      "scenario_count": 2
+    },
+    "recommendation": "No remediation required for the current fixture set.",
+    "severity": "high",
+    "status": "pass",
+    "title": "Prompt and data exposure scenarios define expected outcomes"
+  },
+  {
+    "control_id": "COPILOT-CONN-001",
+    "evidence": {
+      "incomplete_connectors": [
+        "Custom CRM"
+      ]
+    },
+    "recommendation": "Require connector owner, scopes, approval state, and revocation plan before adoption.",
+    "severity": "high",
+    "status": "fail",
+    "title": "Connector workflow includes owner, scopes, approval state, and revocation plan"
+  },
+  {
+    "control_id": "COPILOT-AUDIT-001",
+    "evidence": {
+      "present_events": [
+        "AdminConfigChange",
+        "CopilotInteraction",
+        "DlpRuleMatch"
+      ],
+      "required_events": [
+        "AdminConfigChange",
+        "CopilotInteraction",
+        "DlpRuleMatch"
+      ]
+    },
+    "recommendation": "No remediation required for the current fixture set.",
+    "severity": "high",
+    "status": "pass",
+    "title": "Required Copilot governance audit events are present"
+  },
+  {
+    "control_id": "COPILOT-ADOPT-001",
+    "evidence": {
+      "adoption_status": "not_ready",
+      "critical_failed": [
+        "COPILOT-DLP-003",
+        "COPILOT-SP-001"
+      ],
+      "high_failed": [
+        "COPILOT-ID-002",
+        "COPILOT-CA-002",
+        "COPILOT-CONN-001"
+      ]
+    },
+    "recommendation": "Resolve failed controls or record owner-approved risk acceptance before rollout.",
+    "severity": "critical",
+    "status": "fail",
+    "title": "Secure adoption decision"
+  }
+]
