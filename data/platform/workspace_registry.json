@@ -1,0 +1,57 @@
+{
+  "registry_name": "SecureTheCloud Copilot Governance Platform Workspace Registry",
+  "registry_version": "0.1.0",
+  "platform_mode": "static_simulation_control_plane_shell",
+  "authority": "no_runtime_authority",
+  "workspaces": [
+    {
+      "workspace_id": "command_center",
+      "title": "Governance Command Center",
+      "purpose": "Platform landing workspace for status, workspace inventory, evidence status, assessment status, doctrine alignment, and claims boundary.",
+      "status": "active_static_shell",
+      "synthetic_only": true,
+      "runtime_authority": false
+    },
+    {
+      "workspace_id": "control_catalog",
+      "title": "Control Catalog Workspace",
+      "purpose": "Enterprise control inventory across identity, access, Purview, DLP, data protection, Copilot governance, audit, and adoption controls.",
+      "status": "active_static_shell",
+      "synthetic_only": true,
+      "runtime_authority": false
+    },
+    {
+      "workspace_id": "evidence_inventory",
+      "title": "Evidence Inventory Workspace",
+      "purpose": "Central catalog of synthetic assessment evidence, control results, reports, workspace snapshots, and doctrine alignment outputs.",
+      "status": "active_static_shell",
+      "synthetic_only": true,
+      "runtime_authority": false
+    },
+    {
+      "workspace_id": "tenant_readiness",
+      "title": "Tenant Readiness Workspace",
+      "purpose": "Synthetic readiness workspace for pilot and broad deployment posture modeling without live tenant connections.",
+      "status": "active_static_shell",
+      "synthetic_only": true,
+      "runtime_authority": false
+    },
+    {
+      "workspace_id": "assessment_history",
+      "title": "Assessment History Workspace",
+      "purpose": "Synthetic assessment history registry for generated readiness runs and evidence snapshots.",
+      "status": "active_static_shell",
+      "synthetic_only": true,
+      "runtime_authority": false
+    },
+    {
+      "workspace_id": "executive_dashboard",
+      "title": "Executive Dashboard Workspace",
+      "purpose": "Executive reporting shell for control coverage, risk posture, readiness, evidence completeness, and governance status.",
+      "status": "active_static_shell",
+      "synthetic_only": true,
+      "runtime_authority": false
+    }
+  ],
+  "claims_boundary": "Static simulation control plane shell only. No live Microsoft tenant connection, authentication, authorization, RBAC, token issuance, runtime sessions, backend API exposure, database persistence, production enforcement, real customer data, SOC 2 certification claim, or production operating-effectiveness claim."
+}
