@@ -1,7 +1,7 @@
 # Phase 1 — Evidence Engine Hardening
 
-**Status:** Implementation Complete / CI Verification Pending  
-**Date:** 2026-06-23
+**Status:** Evidence Recorded  
+**Date:** 2026-06-24
 
 ## Goal
 
@@ -43,8 +43,9 @@ Forbidden:
 - [x] Add Microsoft control source references document
 - [x] Add schema validation tests
 - [x] Add normalization tests
-- [ ] CI passed
-- [ ] Phase 1 evidence recorded
+- [x] Local validation evidence recorded
+- [x] CI passed
+- [x] Phase 1 evidence recorded
 
 ## Evidence artifacts
 
@@ -57,8 +58,17 @@ Forbidden:
 - `src/stc_copilot_lab/schema_validation.py`
 - `src/stc_copilot_lab/normalization.py`
 - `docs/MICROSOFT_CONTROL_SOURCE_REFERENCES.md`
+- `docs/phases/PHASE_1_LOCAL_VALIDATION_EVIDENCE.md`
 - `tests/test_schema_validation.py`
 - `tests/test_normalization.py`
+
+## Validation evidence
+
+- Local validation passed on Linux with Python 3.12.3: `pytest` reported 9 passed.
+- Local synthetic evidence generation passed with adoption status `not_ready`.
+- PR #1 `Record Phase 1 local validation evidence` merged into `main`.
+- GitHub Actions workflow `copilot-governance-lab-ci` completed successfully for PR head commit `203f5c2861447b287afe1be5090710956cd25c11`.
+- GitHub Actions run `28079459163` concluded with `success`.
 
 ## Claims boundary
 
@@ -66,4 +76,4 @@ Phase 1 evidence is synthetic readiness evidence only. It does not claim live co
 
 ## Phase 0 closure note
 
-Phase 0 CI and evidence closure remain pending until GitHub Actions produces a passing run for the repository baseline plus Phase 1 hardening changes.
+Phase 0 CI and evidence closure are recorded in `docs/phases/PHASE_TRACKER.md` based on local validation plus the successful PR-triggered GitHub Actions workflow.
