@@ -1,0 +1,28 @@
+{
+  "title": "SecureTheCloud Copilot Governance Platform Workspace Registry",
+  "type": "object",
+  "required": ["registry_name", "registry_version", "platform_mode", "authority", "workspaces", "claims_boundary"],
+  "properties": {
+    "registry_name": {"type": "string", "minLength": 1},
+    "registry_version": {"type": "string", "minLength": 1},
+    "platform_mode": {"type": "string", "enum": ["static_simulation_control_plane_shell"]},
+    "authority": {"type": "string", "enum": ["no_runtime_authority"]},
+    "workspaces": {
+      "type": "array",
+      "minItems": 6,
+      "items": {
+        "type": "object",
+        "required": ["workspace_id", "title", "purpose", "status", "synthetic_only", "runtime_authority"],
+        "properties": {
+          "workspace_id": {"type": "string", "minLength": 1},
+          "title": {"type": "string", "minLength": 1},
+          "purpose": {"type": "string", "minLength": 1},
+          "status": {"type": "string", "enum": ["active_static_shell"]},
+          "synthetic_only": {"type": "boolean", "enum": [true]},
+          "runtime_authority": {"type": "boolean", "enum": [false]}
+        }
+      }
+    },
+    "claims_boundary": {"type": "string", "minLength": 1}
+  }
+}

@@ -8,6 +8,7 @@ from pathlib import Path
 
 from .doctrine_alignment import build_doctrine_alignment_report, render_doctrine_alignment_markdown
 from .evaluator import evaluate_lab_state, load_state
+from .platform import build_assessment_history, build_executive_dashboard, build_governance_command_center, build_platform_registry
 from .workspace import build_workspace_index, render_workspace_markdown
 
 
@@ -74,6 +75,23 @@ def _write_doctrine_alignment(result: dict, out_dir: Path) -> None:
     )
 
 
+def _write_platform(result: dict, out_dir: Path) -> None:
+    platform_dir = out_dir / "platform"
+    platform_dir.mkdir(parents=True, exist_ok=True)
+    platform_registry = build_platform_registry()
+    outputs = {
+        "platform_registry.json": platform_registry,
+        "governance_command_center.json": build_governance_command_center(result, platform_registry),
+        "executive_dashboard.json": build_executive_dashboard(result, platform_registry),
+        "assessment_history.json": build_assessment_history(result),
+    }
+    for filename, payload in outputs.items():
+        (platform_dir / filename).write_text(
+            json.dumps(payload, indent=2, sort_keys=True) + "\n",
+            encoding="utf-8",
+        )
+
+
 def evaluate_command(args: argparse.Namespace) -> int:
     fixtures = Path(args.fixtures)
     out_dir = Path(args.out)
@@ -95,6 +113,8 @@ def evaluate_command(args: argparse.Namespace) -> int:
         _write_workspace(result, out_dir)
     if args.doctrine_alignment:
         _write_doctrine_alignment(result, out_dir)
+    if args.platform:
+        _write_platform(result, out_dir)
     print(json.dumps({"adoption_status": result["adoption_status"], "out": str(out_dir)}, sort_keys=True))
     return 0
 
@@ -108,6 +128,7 @@ def build_parser() -> argparse.ArgumentParser:
     evaluate.add_argument("--out", default="evidence/generated", help="Output directory for generated evidence")
     evaluate.add_argument("--workspace", action="store_true", help="Generate static evidence workspace shell outputs")
     evaluate.add_argument("--doctrine-alignment", action="store_true", help="Generate downstream doctrine contract alignment outputs")
+    evaluate.add_argument("--platform", action="store_true", help="Generate static governance platform control plane shell outputs")
     evaluate.set_defaults(func=evaluate_command)
     return parser
 
