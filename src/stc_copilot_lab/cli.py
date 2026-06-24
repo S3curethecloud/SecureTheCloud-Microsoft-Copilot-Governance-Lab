@@ -6,6 +6,7 @@ import argparse
 import json
 from pathlib import Path
 
+from .doctrine_alignment import build_doctrine_alignment_report, render_doctrine_alignment_markdown
 from .evaluator import evaluate_lab_state, load_state
 from .workspace import build_workspace_index, render_workspace_markdown
 
@@ -61,6 +62,18 @@ def _write_workspace(result: dict, out_dir: Path) -> None:
     )
 
 
+def _write_doctrine_alignment(result: dict, out_dir: Path) -> None:
+    alignment_report = build_doctrine_alignment_report(result)
+    (out_dir / "doctrine_alignment_report.json").write_text(
+        json.dumps(alignment_report, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    (out_dir / "doctrine_alignment_summary.md").write_text(
+        render_doctrine_alignment_markdown(alignment_report),
+        encoding="utf-8",
+    )
+
+
 def evaluate_command(args: argparse.Namespace) -> int:
     fixtures = Path(args.fixtures)
     out_dir = Path(args.out)
@@ -80,6 +93,8 @@ def evaluate_command(args: argparse.Namespace) -> int:
     _write_summary(result, out_dir)
     if args.workspace:
         _write_workspace(result, out_dir)
+    if args.doctrine_alignment:
+        _write_doctrine_alignment(result, out_dir)
     print(json.dumps({"adoption_status": result["adoption_status"], "out": str(out_dir)}, sort_keys=True))
     return 0
 
@@ -92,6 +107,7 @@ def build_parser() -> argparse.ArgumentParser:
     evaluate.add_argument("--fixtures", default="data/fixtures", help="Fixture directory containing lab_state.json")
     evaluate.add_argument("--out", default="evidence/generated", help="Output directory for generated evidence")
     evaluate.add_argument("--workspace", action="store_true", help="Generate static evidence workspace shell outputs")
+    evaluate.add_argument("--doctrine-alignment", action="store_true", help="Generate downstream doctrine contract alignment outputs")
     evaluate.set_defaults(func=evaluate_command)
     return parser
 
