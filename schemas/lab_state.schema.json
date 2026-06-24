@@ -1,0 +1,40 @@
+{
+  "title": "SecureTheCloud Copilot Governance Lab State",
+  "type": "object",
+  "required": [
+    "risk_intake",
+    "users",
+    "conditional_access_policies",
+    "sensitivity_labels",
+    "dlp_policies",
+    "sites",
+    "files",
+    "prompt_scenarios",
+    "connectors",
+    "audit_events"
+  ],
+  "properties": {
+    "risk_intake": {
+      "type": "object",
+      "required": ["request_id", "business_unit", "use_case", "data_classes", "risk_owner", "approval_state", "pilot_group"],
+      "properties": {
+        "request_id": {"type": "string", "minLength": 1},
+        "business_unit": {"type": "string", "minLength": 1},
+        "use_case": {"type": "string", "minLength": 1},
+        "data_classes": {"type": "array", "items": {"type": "string"}, "minItems": 1},
+        "risk_owner": {"type": "string", "minLength": 1},
+        "approval_state": {"type": "string", "minLength": 1},
+        "pilot_group": {"type": "string", "minLength": 1}
+      }
+    },
+    "users": {"type": "array", "items": {"type": "object", "required": ["id", "user_type", "groups"]}},
+    "conditional_access_policies": {"type": "array", "items": {"type": "object", "required": ["id", "name", "enabled", "target_groups", "actions"]}},
+    "sensitivity_labels": {"type": "array", "items": {"type": "object", "required": ["id", "name"]}},
+    "dlp_policies": {"type": "array", "items": {"type": "object", "required": ["id", "name", "enabled", "actions"]}},
+    "sites": {"type": "array", "items": {"type": "object", "required": ["id", "name", "owner"]}},
+    "files": {"type": "array", "items": {"type": "object", "required": ["id", "site_id", "name", "sensitivity", "sharing"]}},
+    "prompt_scenarios": {"type": "array", "items": {"type": "object", "required": ["id", "description", "expected_control_outcome"]}},
+    "connectors": {"type": "array", "items": {"type": "object", "required": ["name", "owner", "scopes", "approval_state", "revocation_plan"]}},
+    "audit_events": {"type": "array", "items": {"type": "object", "required": ["event_type", "actor", "resource", "timestamp"]}}
+  }
+}
