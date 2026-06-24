@@ -1,0 +1,124 @@
+{
+  "risk_intake": {
+    "request_id": "copilot-intake-001",
+    "business_unit": "Finance",
+    "use_case": "Summarize synthetic financial planning documents for readiness testing.",
+    "data_classes": ["Confidential", "Financial Forecast"],
+    "risk_owner": "Finance Security Lead",
+    "approval_state": "controls_review",
+    "pilot_group": "M365-Copilot-Pilot"
+  },
+  "users": [
+    {
+      "id": "user-001",
+      "display_name": "Avery Finance",
+      "user_type": "member",
+      "privileged": false,
+      "groups": ["M365-Copilot-Pilot"]
+    },
+    {
+      "id": "user-002",
+      "display_name": "Riley Admin",
+      "user_type": "member",
+      "privileged": true,
+      "groups": ["M365-Copilot-Pilot", "Security-Admins"]
+    },
+    {
+      "id": "guest-001",
+      "display_name": "External Analyst",
+      "user_type": "guest",
+      "privileged": false,
+      "groups": ["M365-Copilot-Pilot"],
+      "copilot_exception_approved": false
+    }
+  ],
+  "conditional_access_policies": [
+    {
+      "id": "ca-001",
+      "name": "Require MFA for Copilot Pilot",
+      "enabled": true,
+      "target_groups": ["M365-Copilot-Pilot"],
+      "actions": ["require_mfa"]
+    }
+  ],
+  "sensitivity_labels": [
+    {"id": "label-001", "name": "Public"},
+    {"id": "label-002", "name": "Confidential"},
+    {"id": "label-003", "name": "Highly Confidential"}
+  ],
+  "dlp_policies": [
+    {
+      "id": "dlp-001",
+      "name": "Restrict sensitive Copilot prompts",
+      "enabled": true,
+      "actions": ["restrict_sensitive_prompt_processing", "restrict_sensitive_prompt_web_grounding"]
+    }
+  ],
+  "sites": [
+    {"id": "site-001", "name": "Finance Planning", "owner": "Finance Security Lead"}
+  ],
+  "files": [
+    {
+      "id": "file-001",
+      "site_id": "site-001",
+      "name": "synthetic-forecast.docx",
+      "sensitivity": "Highly Confidential",
+      "sharing": ["finance-team"]
+    },
+    {
+      "id": "file-002",
+      "site_id": "site-001",
+      "name": "synthetic-acquisition-plan.docx",
+      "sensitivity": "Confidential",
+      "sharing": ["organization"]
+    }
+  ],
+  "prompt_scenarios": [
+    {
+      "id": "prompt-001",
+      "description": "Synthetic sensitive identifier prompt",
+      "expected_control_outcome": "restrict_sensitive_prompt_processing"
+    },
+    {
+      "id": "prompt-002",
+      "description": "Synthetic overshared acquisition document retrieval",
+      "expected_control_outcome": "flag_broad_sharing"
+    }
+  ],
+  "connectors": [
+    {
+      "name": "Jira",
+      "owner": "Product Engineering",
+      "scopes": ["read:issues", "read:projects"],
+      "approval_state": "approved_with_conditions",
+      "revocation_plan": "Disable app registration and remove enterprise app assignment."
+    },
+    {
+      "name": "Custom CRM",
+      "owner": "Sales Operations",
+      "scopes": [],
+      "approval_state": "draft",
+      "revocation_plan": ""
+    }
+  ],
+  "audit_events": [
+    {
+      "event_type": "CopilotInteraction",
+      "actor": "user-001",
+      "resource": "prompt-001",
+      "timestamp": "2026-06-23T12:00:00Z"
+    },
+    {
+      "event_type": "DlpRuleMatch",
+      "actor": "system",
+      "resource": "dlp-001",
+      "timestamp": "2026-06-23T12:01:00Z"
+    },
+    {
+      "event_type": "AdminConfigChange",
+      "actor": "security-admin",
+      "resource": "ca-001",
+      "timestamp": "2026-06-23T12:02:00Z"
+    }
+  ]
+}
