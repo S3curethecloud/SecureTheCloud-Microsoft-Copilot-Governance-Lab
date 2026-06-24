@@ -1,0 +1,30 @@
+{
+  "title": "SecureTheCloud Copilot Governance Workspace Index",
+  "type": "object",
+  "required": [
+    "workspace",
+    "workspace_mode",
+    "platform_posture",
+    "authority",
+    "adoption_status",
+    "summary_counts",
+    "navigation",
+    "control_groups",
+    "priority_findings",
+    "artifacts",
+    "claims_boundary"
+  ],
+  "properties": {
+    "workspace": {"type": "string", "minLength": 1},
+    "workspace_mode": {"type": "string", "enum": ["static_simulation_shell"]},
+    "platform_posture": {"type": "string", "enum": ["enterprise_ready_architecture_foundation"]},
+    "authority": {"type": "string", "enum": ["no_runtime_authority"]},
+    "adoption_status": {"type": "string", "enum": ["ready", "review_required", "not_ready"]},
+    "summary_counts": {"type": "object"},
+    "navigation": {"type": "array", "minItems": 1},
+    "control_groups": {"type": "object"},
+    "priority_findings": {"type": "array"},
+    "artifacts": {"type": "array", "minItems": 1},
+    "claims_boundary": {"type": "string", "minLength": 1}
+  }
+}
