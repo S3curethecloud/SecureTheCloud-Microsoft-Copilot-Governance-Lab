@@ -1,0 +1,17 @@
+{
+  "title": "SecureTheCloud Copilot Governance Control Results",
+  "type": "array",
+  "minItems": 1,
+  "items": {
+    "type": "object",
+    "required": ["control_id", "title", "severity", "status", "evidence", "recommendation"],
+    "properties": {
+      "control_id": {"type": "string", "pattern": "^COPILOT-[A-Z]+-[0-9]{3}$"},
+      "title": {"type": "string", "minLength": 1},
+      "severity": {"type": "string", "enum": ["critical", "high", "medium", "low", "info"]},
+      "status": {"type": "string", "enum": ["pass", "fail", "warn"]},
+      "evidence": {"type": "object"},
+      "recommendation": {"type": "string", "minLength": 1}
+    }
+  }
+}
