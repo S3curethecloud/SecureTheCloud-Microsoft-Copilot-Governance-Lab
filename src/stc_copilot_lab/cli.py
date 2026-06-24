@@ -7,6 +7,7 @@ import json
 from pathlib import Path
 
 from .evaluator import evaluate_lab_state, load_state
+from .workspace import build_workspace_index, render_workspace_markdown
 
 
 def _write_summary(result: dict, out_dir: Path) -> None:
@@ -48,6 +49,18 @@ def _write_summary(result: dict, out_dir: Path) -> None:
     (out_dir / "secure_adoption_summary.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
+def _write_workspace(result: dict, out_dir: Path) -> None:
+    workspace_index = build_workspace_index(result)
+    (out_dir / "workspace_index.json").write_text(
+        json.dumps(workspace_index, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    (out_dir / "evidence_workspace.md").write_text(
+        render_workspace_markdown(result, workspace_index),
+        encoding="utf-8",
+    )
+
+
 def evaluate_command(args: argparse.Namespace) -> int:
     fixtures = Path(args.fixtures)
     out_dir = Path(args.out)
@@ -65,6 +78,8 @@ def evaluate_command(args: argparse.Namespace) -> int:
         encoding="utf-8",
     )
     _write_summary(result, out_dir)
+    if args.workspace:
+        _write_workspace(result, out_dir)
     print(json.dumps({"adoption_status": result["adoption_status"], "out": str(out_dir)}, sort_keys=True))
     return 0
 
@@ -76,6 +91,7 @@ def build_parser() -> argparse.ArgumentParser:
     evaluate = subparsers.add_parser("evaluate", help="Evaluate synthetic fixture data")
     evaluate.add_argument("--fixtures", default="data/fixtures", help="Fixture directory containing lab_state.json")
     evaluate.add_argument("--out", default="evidence/generated", help="Output directory for generated evidence")
+    evaluate.add_argument("--workspace", action="store_true", help="Generate static evidence workspace shell outputs")
     evaluate.set_defaults(func=evaluate_command)
     return parser
 
